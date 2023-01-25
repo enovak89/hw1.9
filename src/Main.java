@@ -8,6 +8,11 @@ public class Main {
         task1_3();
         task4();
         taskAdd1();
+        taskAdd2();
+        taskAdd3();
+        taskAdd4();
+        taskAdd5();
+        taskAdd6();
 
     }
 
@@ -89,5 +94,95 @@ public class Main {
         System.out.println(Arrays.toString(arr));
         System.out.println("Максимум = " + maxElement);
         System.out.println("Index maximuma - " + ind);
+    }
+
+    public static void taskAdd2() {
+        System.out.println("taskAdd2");
+        int[] arr = getRandomArray(0, 1, 11);
+        System.out.println(Arrays.toString(arr));
+        int counter = 0;
+        for (int i : arr) {
+            counter = i == 1 ? ++counter : counter;
+        }
+        System.out.println(counter);
+        System.out.println(counter > 5 ? "1 больше" : "0 больше");
+    }
+
+    public static void taskAdd3() {
+        System.out.println("taskAdd3");
+        int[][] twoDimensionArr = new int[8][5];
+        for (int i = 0; i < twoDimensionArr.length; i++) {
+            twoDimensionArr[i] = getRandomArray(10, 99, 5);
+        }
+        System.out.println(Arrays.deepToString(twoDimensionArr));
+        for (int[] i : twoDimensionArr) {
+            System.out.println(Arrays.toString(i));
+        }
+    }
+
+    public static void taskAdd4() {
+        System.out.println("taskAdd4");
+        int[][] twoDimensionsArr = new int[5][8];
+        int maxElement = twoDimensionsArr[0][0];
+        //    for (int[] subArr : twoDimensionsArr) {
+        //        subArr = getRandomArray(-99, 99, 8);
+        //    }
+        for (int i = 0; i < twoDimensionsArr.length; i++) {
+            twoDimensionsArr[i] = getRandomArray(-99, 99, 8);
+        }
+        for (int[] subArr : twoDimensionsArr) {
+            System.out.println(Arrays.toString(subArr));
+            for (int i = 0; i < subArr.length; i++) {
+                maxElement = Math.max(maxElement, subArr[i]);
+            }
+        }
+        Arrays.deepToString(twoDimensionsArr);
+        System.out.println(maxElement);
+    }
+
+    public static void taskAdd5() {
+        System.out.println("taskAdd5");
+        int[][] twoDimensionsArr = new int[7][4];
+        int[] multiplicationLineArr = new int[twoDimensionsArr.length];
+        int maxLineIndex = 0;
+        Arrays.fill(multiplicationLineArr, 1);
+        for (int i = 0; i < twoDimensionsArr.length; i++) {
+            twoDimensionsArr[i] = getRandomArray(-5, 5, 4);
+        }
+        for (int i = 0; i < twoDimensionsArr.length; i++) {
+            for (int j = 0; j < twoDimensionsArr[i].length; j++) {
+                multiplicationLineArr[i] *= twoDimensionsArr[i][j];
+            }
+        }
+
+        for (int[] subArr : twoDimensionsArr) {
+            System.out.println(Arrays.toString(subArr));
+        }
+        System.out.println("Массив с произведениями строк - " + Arrays.toString(multiplicationLineArr));
+        int[] multiplicationLineArrCopy = Arrays.copyOf(multiplicationLineArr, multiplicationLineArr.length);
+        Arrays.sort(multiplicationLineArrCopy);
+        for (int i = 0; i < multiplicationLineArr.length; i++) {
+            maxLineIndex = multiplicationLineArr[i] == multiplicationLineArrCopy[multiplicationLineArrCopy.length - 1] ? i : maxLineIndex;
+        }
+        System.out.println("Индекс строки с максимальным произведением - " + maxLineIndex);
+    }
+
+    public static void taskAdd6() {
+        System.out.println("taskAdd6");
+        int[][] twoDimensionsArr = new int[6][7];
+        for (int i = 0; i < twoDimensionsArr.length; i++) {
+            twoDimensionsArr[i] = getRandomArray(0, 9, 7);
+        }
+        for (int[] i : twoDimensionsArr) {
+            System.out.println(Arrays.toString(i));
+            Arrays.sort(i);
+            int tmp = i[0];
+            i[0] = i[6];
+            i[6] = tmp;
+        }
+        System.out.println();
+        for (int[] i : twoDimensionsArr) {
+            System.out.println(Arrays.toString(i));
+        }
     }
 }
